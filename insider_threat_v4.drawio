@@ -1,0 +1,475 @@
+<mxfile host="app.diagrams.net" modified="2026-03-20T00:00:00.000Z" agent="draw.io" version="29.6.4">
+<diagram name="Page-1" id="_R7Yup8geIuuLy7lybpj">
+<mxGraphModel dx="1678" dy="914" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+
+<!-- TITLE -->
+<mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=20;fontStyle=1;" value="Insider Threat Prediction Model — Agent-Based Modeling Framework" vertex="1">
+<mxGeometry height="36" width="1200" x="600" y="20" as="geometry"/>
+</mxCell>
+
+<!-- LEGEND -->
+<mxCell id="legendBg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#999999;" value="" vertex="1">
+<mxGeometry height="120" width="610" x="10" y="10" as="geometry"/>
+</mxCell>
+<mxCell id="lTitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;fontStyle=1;" value="Legend" vertex="1">
+<mxGeometry height="22" width="100" x="30" y="18" as="geometry"/>
+</mxCell>
+<mxCell id="lA" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=11;" value="Normal / expected action" vertex="1">
+<mxGeometry height="30" width="180" x="30" y="44" as="geometry"/>
+</mxCell>
+<mxCell id="lB" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=11;fontStyle=1;" value="[!] Suspicious action" vertex="1">
+<mxGeometry height="30" width="180" x="225" y="44" as="geometry"/>
+</mxCell>
+<mxCell id="lC" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#ef6c00;fontSize=11;fontStyle=1;" value="[BAIT] Honeytoken / Decoy" vertex="1">
+<mxGeometry height="30" width="180" x="420" y="44" as="geometry"/>
+</mxCell>
+<mxCell id="lD" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=11;" value="Entry point / session start" vertex="1">
+<mxGeometry height="30" width="180" x="30" y="84" as="geometry"/>
+</mxCell>
+<mxCell id="lE" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede7f6;strokeColor=#673ab7;fontSize=11;fontStyle=1;" value="Sensor / Detection" vertex="1">
+<mxGeometry height="30" width="180" x="225" y="84" as="geometry"/>
+</mxCell>
+<mxCell id="lF" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dceeff;strokeColor=#1565c0;fontSize=11;fontStyle=1;" value="Decision / Risk output" vertex="1">
+<mxGeometry height="30" width="180" x="420" y="84" as="geometry"/>
+</mxCell>
+
+<!-- COLUMN HEADERS -->
+<mxCell id="h1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=15;fontStyle=1;" value="1. Environment / Organization" vertex="1">
+<mxGeometry height="28" width="320" x="40" y="160" as="geometry"/>
+</mxCell>
+<mxCell id="h2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=15;fontStyle=1;" value="2. Employee Agent / Internal State" vertex="1">
+<mxGeometry height="28" width="340" x="390" y="160" as="geometry"/>
+</mxCell>
+<mxCell id="h3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=15;fontStyle=1;" value="3. Behavioral Workflows" vertex="1">
+<mxGeometry height="28" width="820" x="770" y="160" as="geometry"/>
+</mxCell>
+<mxCell id="h4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=15;fontStyle=1;" value="4. Sensor / Detection Layer" vertex="1">
+<mxGeometry height="28" width="300" x="1630" y="160" as="geometry"/>
+</mxCell>
+<mxCell id="h5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=15;fontStyle=1;" value="5. Decision / Response" vertex="1">
+<mxGeometry height="28" width="300" x="1970" y="160" as="geometry"/>
+</mxCell>
+
+<!-- ══════════════════════════════════════
+     COL 1: ENVIRONMENT
+══════════════════════════════════════ -->
+<mxCell id="envBg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#bdbdbd;dashed=1;verticalAlign=top;" value="" vertex="1">
+<mxGeometry height="2200" width="320" x="40" y="196" as="geometry"/>
+</mxCell>
+<mxCell id="env1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontSize=12;fontStyle=1;" value="Email System" vertex="1">
+<mxGeometry height="48" width="210" x="90" y="228" as="geometry"/>
+</mxCell>
+<mxCell id="env2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#388e3c;fontSize=12;fontStyle=1;" value="Shared Drive / File Server" vertex="1">
+<mxGeometry height="48" width="210" x="90" y="298" as="geometry"/>
+</mxCell>
+<mxCell id="env3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#f9a825;fontSize=12;fontStyle=1;" value="Database / Internal App" vertex="1">
+<mxGeometry height="48" width="210" x="90" y="368" as="geometry"/>
+</mxCell>
+<mxCell id="env4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede7f6;strokeColor=#5e35b1;fontSize=12;fontStyle=1;" value="Endpoint / Workstation" vertex="1">
+<mxGeometry height="48" width="210" x="90" y="438" as="geometry"/>
+</mxCell>
+<mxCell id="env5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#c2185b;fontSize=12;fontStyle=1;" value="Network / Internet / Cloud" vertex="1">
+<mxGeometry height="48" width="210" x="90" y="508" as="geometry"/>
+</mxCell>
+<mxCell id="env6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#8e24aa;fontSize=12;fontStyle=1;" value="USB / External Media" vertex="1">
+<mxGeometry height="48" width="210" x="90" y="578" as="geometry"/>
+</mxCell>
+<mxCell id="env7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#d32f2f;fontSize=12;fontStyle=1;" value="Restricted Folders / Sensitive Assets" vertex="1">
+<mxGeometry height="48" width="210" x="90" y="648" as="geometry"/>
+</mxCell>
+<mxCell id="env8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f7fa;strokeColor=#00838f;fontSize=12;fontStyle=1;" value="Cloud &amp; Online Services" vertex="1">
+<mxGeometry height="48" width="210" x="90" y="718" as="geometry"/>
+</mxCell>
+<mxCell id="env_dev" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#558b2f;fontSize=12;fontStyle=1;" value="Dev Tools / IDE / Git / CI" vertex="1">
+<mxGeometry height="48" width="210" x="90" y="788" as="geometry"/>
+</mxCell>
+<mxCell id="env9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#ef6c00;fontSize=12;fontStyle=1;" value="Decoy Assets&#xa;- password.txt&#xa;- fake payroll.xlsx&#xa;- decoy admin share" vertex="1">
+<mxGeometry height="90" width="250" x="70" y="868" as="geometry"/>
+</mxCell>
+<mxCell id="env10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#757575;fontSize=12;" value="Policies / Access Rights / Normal Role Expectations" vertex="1">
+<mxGeometry height="65" width="250" x="70" y="988" as="geometry"/>
+</mxCell>
+
+<!-- ══════════════════════════════════════
+     COL 2: AGENT
+══════════════════════════════════════ -->
+<mxCell id="agentBg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#bdbdbd;dashed=1;" value="" vertex="1">
+<mxGeometry height="2200" width="340" x="390" y="196" as="geometry"/>
+</mxCell>
+<mxCell id="agentNode" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dceeff;strokeColor=#1565c0;fontSize=15;fontStyle=1;" value="Employee Agent" vertex="1">
+<mxGeometry height="55" width="150" x="485" y="228" as="geometry"/>
+</mxCell>
+<mxCell id="staticAttrs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;fontSize=12;" value="Static / Slow-Changing Attributes&#xa;- employee ID / role / department&#xa;- privilege level / work schedule&#xa;- team membership" vertex="1">
+<mxGeometry height="90" width="280" x="420" y="318" as="geometry"/>
+</mxCell>
+<mxCell id="taxAttrs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede7f6;strokeColor=#673ab7;fontSize=12;" value="Taxonomy Attributes&#xa;- system role: novice / advanced / admin&#xa;- sophistication: low / med / high&#xa;- predisposition: low / med / high&#xa;- stress level: low / med / high" vertex="1">
+<mxGeometry height="110" width="280" x="420" y="438" as="geometry"/>
+</mxCell>
+<mxCell id="dynState" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#8e24aa;fontSize=12;" value="Dynamic Internal State&#xa;- current goal / frustration / stress&#xa;- curiosity / grievance&#xa;- policy compliance / risk appetite&#xa;- intent level / opportunity awareness&#xa;- insider risk state" vertex="1">
+<mxGeometry height="120" width="280" x="420" y="580" as="geometry"/>
+</mxCell>
+<mxCell id="sessionNode" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=13;fontStyle=1;" value="Start Session / Log In" vertex="1">
+<mxGeometry height="55" width="190" x="465" y="738" as="geometry"/>
+</mxCell>
+<mxCell id="lifecycle" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#ef6c00;fontSize=12;" value="Risk-State Lifecycle&#xa;Normal → Stressed → Probing&#xa;→ Suspicious → Malicious → Contained" vertex="1">
+<mxGeometry height="75" width="280" x="420" y="828" as="geometry"/>
+</mxCell>
+
+<!-- ══════════════════════════════════════
+     COL 3: WORKFLOWS BACKGROUND
+══════════════════════════════════════ -->
+<mxCell id="wfBg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#bdbdbd;dashed=1;" value="" vertex="1">
+<mxGeometry height="2200" width="820" x="770" y="196" as="geometry"/>
+</mxCell>
+
+<!-- ══════════════════════════════════════
+     1. EMAIL WORKFLOW  y=218
+     Now shows realistic sequential flow:
+     open → read → reply/reply-all/forward/delete/flag
+     from reply: compose → attach → send
+     suspicious branches only off specific actions
+══════════════════════════════════════ -->
+<mxCell id="emailWF" parent="1" style="swimlane;html=1;rounded=1;startSize=26;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=13;" value="Email Workflow" vertex="1">
+<mxGeometry height="310" width="780" x="790" y="218" as="geometry"/>
+</mxCell>
+
+<!-- Col 1 inside email: entry -->
+<mxCell id="e_open"     parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=12;" value="Open Email Client"    vertex="1"><mxGeometry height="42" width="145" x="15"  y="40"  as="geometry"/></mxCell>
+
+<!-- Col 2: inbox actions -->
+<mxCell id="e_inbox"    parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="View Inbox"           vertex="1"><mxGeometry height="42" width="130" x="185" y="15"  as="geometry"/></mxCell>
+<mxCell id="e_compose"  parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Compose New Email"    vertex="1"><mxGeometry height="42" width="130" x="185" y="70"  as="geometry"/></mxCell>
+<mxCell id="e_search"   parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Search / Filter Inbox" vertex="1"><mxGeometry height="42" width="130" x="185" y="125" as="geometry"/></mxCell>
+
+<!-- Col 3: after opening a message -->
+<mxCell id="e_read"     parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Read Email"           vertex="1"><mxGeometry height="42" width="125" x="340" y="15"  as="geometry"/></mxCell>
+<mxCell id="e_flag"     parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Flag / Star Email"    vertex="1"><mxGeometry height="42" width="125" x="340" y="70"  as="geometry"/></mxCell>
+<mxCell id="e_del"      parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Delete / Archive"     vertex="1"><mxGeometry height="42" width="125" x="340" y="125" as="geometry"/></mxCell>
+<mxCell id="e_move"     parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Move to Folder"       vertex="1"><mxGeometry height="42" width="125" x="340" y="180" as="geometry"/></mxCell>
+
+<!-- Col 4: reply / respond actions -->
+<mxCell id="e_reply"    parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Reply to Sender"      vertex="1"><mxGeometry height="42" width="130" x="490" y="15"  as="geometry"/></mxCell>
+<mxCell id="e_replyall" parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Reply All"            vertex="1"><mxGeometry height="42" width="130" x="490" y="70"  as="geometry"/></mxCell>
+<mxCell id="e_attach"   parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Attach File &amp; Send" vertex="1"><mxGeometry height="42" width="130" x="490" y="125" as="geometry"/></mxCell>
+
+<!-- Col 5: suspicious branches -->
+<mxCell id="e_fwd"      parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Forward to External"  vertex="1"><mxGeometry height="42" width="135" x="640" y="15"  as="geometry"/></mxCell>
+<mxCell id="e_dl"       parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Download Attachment"  vertex="1"><mxGeometry height="42" width="135" x="640" y="70"  as="geometry"/></mxCell>
+<mxCell id="e_link"     parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Click Suspicious Link" vertex="1"><mxGeometry height="42" width="135" x="640" y="125" as="geometry"/></mxCell>
+<mxCell id="e_bulk"     parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Mass Forward / BCC Dump" vertex="1"><mxGeometry height="42" width="135" x="640" y="180" as="geometry"/></mxCell>
+<mxCell id="e_srchsens" parent="emailWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Search Sensitive Keywords" vertex="1"><mxGeometry height="42" width="135" x="640" y="240" as="geometry"/></mxCell>
+
+<!-- Email internal edges -->
+<mxCell id="ee1"  edge="1" parent="emailWF" source="e_open"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_inbox"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee2"  edge="1" parent="emailWF" source="e_open"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_compose" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee3"  edge="1" parent="emailWF" source="e_open"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_search"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee4"  edge="1" parent="emailWF" source="e_inbox"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_read"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee5"  edge="1" parent="emailWF" source="e_inbox"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_flag"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee6"  edge="1" parent="emailWF" source="e_inbox"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_del"     ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee7"  edge="1" parent="emailWF" source="e_inbox"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_move"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<!-- read → reply actions (sequential: you read THEN reply) -->
+<mxCell id="ee8"  edge="1" parent="emailWF" source="e_read"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_reply"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee9"  edge="1" parent="emailWF" source="e_read"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_replyall"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee10" edge="1" parent="emailWF" source="e_read"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="e_attach"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<!-- suspicious branches only from specific actions -->
+<mxCell id="ee11" edge="1" parent="emailWF" source="e_reply"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="e_fwd"     ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee12" edge="1" parent="emailWF" source="e_attach"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="e_dl"      ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee13" edge="1" parent="emailWF" source="e_read"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="e_link"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee14" edge="1" parent="emailWF" source="e_replyall" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="e_bulk"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ee15" edge="1" parent="emailWF" source="e_search"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="e_srchsens"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- ══════════════════════════════════════
+     2. FILE WORKFLOW  y=563
+══════════════════════════════════════ -->
+<mxCell id="fileWF" parent="1" style="swimlane;html=1;rounded=1;startSize=26;fillColor=#e8f5e9;strokeColor=#388e3c;fontStyle=1;fontSize=13;" value="File Workflow" vertex="1">
+<mxGeometry height="280" width="780" x="790" y="563" as="geometry"/>
+</mxCell>
+<mxCell id="f_open"      parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=12;" value="Open File Explorer"        vertex="1"><mxGeometry height="42" width="150" x="15"  y="55"  as="geometry"/></mxCell>
+<mxCell id="f_browse"    parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Browse Folders"             vertex="1"><mxGeometry height="42" width="130" x="190" y="30"  as="geometry"/></mxCell>
+<mxCell id="f_read"      parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Open / Read File"           vertex="1"><mxGeometry height="42" width="130" x="190" y="85"  as="geometry"/></mxCell>
+<mxCell id="f_edit"      parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Edit / Save File (ordinary)" vertex="1"><mxGeometry height="42" width="130" x="190" y="140" as="geometry"/></mxCell>
+<mxCell id="f_copy"      parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Copy File"              vertex="1"><mxGeometry height="42" width="140" x="345" y="30"  as="geometry"/></mxCell>
+<mxCell id="f_move"      parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#fb8c00;fontSize=12;" value="Move File"                  vertex="1"><mxGeometry height="42" width="140" x="345" y="85"  as="geometry"/></mxCell>
+<mxCell id="f_del"       parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#fb8c00;fontSize=12;" value="Delete File"                vertex="1"><mxGeometry height="42" width="140" x="345" y="140" as="geometry"/></mxCell>
+<mxCell id="f_zip"       parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Compress Folder"       vertex="1"><mxGeometry height="42" width="150" x="510" y="30"  as="geometry"/></mxCell>
+<mxCell id="f_restr"     parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Access Restricted File"  vertex="1"><mxGeometry height="42" width="150" x="510" y="85"  as="geometry"/></mxCell>
+<mxCell id="f_edit_risk" parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Edit System / Config / Log File" vertex="1"><mxGeometry height="42" width="150" x="510" y="140" as="geometry"/></mxCell>
+<mxCell id="f_bait"      parent="fileWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#ef6c00;fontSize=12;fontStyle=1;" value="[BAIT] Open password.txt"   vertex="1"><mxGeometry height="42" width="150" x="510" y="195" as="geometry"/></mxCell>
+<mxCell id="ff1"  edge="1" parent="fileWF" source="f_open"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="f_browse"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ff2"  edge="1" parent="fileWF" source="f_open"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="f_read"     ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ff3"  edge="1" parent="fileWF" source="f_open"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="f_edit"     ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ff4"  edge="1" parent="fileWF" source="f_browse" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="f_copy"     ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ff5"  edge="1" parent="fileWF" source="f_browse" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="f_move"     ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ff6"  edge="1" parent="fileWF" source="f_browse" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="f_del"      ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ff7"  edge="1" parent="fileWF" source="f_copy"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="f_zip"      ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ff8"  edge="1" parent="fileWF" source="f_browse" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="f_restr"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ff9"  edge="1" parent="fileWF" source="f_edit"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="f_edit_risk"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ff10" edge="1" parent="fileWF" source="f_browse" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;" target="f_bait"     ><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- ══════════════════════════════════════
+     3. BROWSER WORKFLOW  y=878
+══════════════════════════════════════ -->
+<mxCell id="browserWF" parent="1" style="swimlane;html=1;rounded=1;startSize=26;fillColor=#fce4ec;strokeColor=#c2185b;fontStyle=1;fontSize=13;" value="Browser / Network Workflow" vertex="1">
+<mxGeometry height="215" width="780" x="790" y="878" as="geometry"/>
+</mxCell>
+<mxCell id="b_open"  parent="browserWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=12;" value="Open Browser"                   vertex="1"><mxGeometry height="42" width="150" x="15"  y="55"  as="geometry"/></mxCell>
+<mxCell id="b_int"   parent="browserWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Visit Internal Site"             vertex="1"><mxGeometry height="42" width="140" x="190" y="30"  as="geometry"/></mxCell>
+<mxCell id="b_ext"   parent="browserWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#fb8c00;fontSize=12;" value="Visit External Site"             vertex="1"><mxGeometry height="42" width="140" x="190" y="85"  as="geometry"/></mxCell>
+<mxCell id="b_up"    parent="browserWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Upload to Cloud / External" vertex="1"><mxGeometry height="42" width="140" x="190" y="140" as="geometry"/></mxCell>
+<mxCell id="b_dl"    parent="browserWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Download Tool / Script"     vertex="1"><mxGeometry height="42" width="150" x="355" y="30"  as="geometry"/></mxCell>
+<mxCell id="b_cred"  parent="browserWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Search Credentials / Secrets" vertex="1"><mxGeometry height="42" width="150" x="355" y="85"  as="geometry"/></mxCell>
+<mxCell id="b_rdp"   parent="browserWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Connect Remote Session"     vertex="1"><mxGeometry height="42" width="150" x="355" y="140" as="geometry"/></mxCell>
+<mxCell id="b_bait"  parent="browserWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#ef6c00;fontSize=12;fontStyle=1;" value="[BAIT] Access Honey URL"        vertex="1"><mxGeometry height="42" width="150" x="530" y="85"  as="geometry"/></mxCell>
+<mxCell id="bb1" edge="1" parent="browserWF" source="b_open" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="b_int" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="bb2" edge="1" parent="browserWF" source="b_open" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="b_ext" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="bb3" edge="1" parent="browserWF" source="b_open" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="b_up"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="bb4" edge="1" parent="browserWF" source="b_ext"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="b_dl"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="bb5" edge="1" parent="browserWF" source="b_ext"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="b_cred"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="bb6" edge="1" parent="browserWF" source="b_ext"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="b_rdp" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="bb7" edge="1" parent="browserWF" source="b_cred" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;" target="b_bait"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- ══════════════════════════════════════
+     4. CLOUD / ONLINE SERVICES  y=1128
+══════════════════════════════════════ -->
+<mxCell id="cloudWF" parent="1" style="swimlane;html=1;rounded=1;startSize=26;fillColor=#e0f7fa;strokeColor=#00838f;fontStyle=1;fontSize=13;" value="Cloud &amp; Online Services Workflow" vertex="1">
+<mxGeometry height="215" width="780" x="790" y="1128" as="geometry"/>
+</mxCell>
+<mxCell id="c_open"  parent="cloudWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=12;" value="Access Cloud App / SaaS"          vertex="1"><mxGeometry height="42" width="155" x="15"  y="55"  as="geometry"/></mxCell>
+<mxCell id="c_auth"  parent="cloudWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Authenticate (SSO / MFA)"          vertex="1"><mxGeometry height="42" width="150" x="195" y="30"  as="geometry"/></mxCell>
+<mxCell id="c_read"  parent="cloudWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Read / View Data"                  vertex="1"><mxGeometry height="42" width="150" x="195" y="85"  as="geometry"/></mxCell>
+<mxCell id="c_api"   parent="cloudWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="API Call (authorised)"              vertex="1"><mxGeometry height="42" width="150" x="195" y="140" as="geometry"/></mxCell>
+<mxCell id="c_exfil" parent="cloudWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Exfiltrate via API / Webhook" vertex="1"><mxGeometry height="42" width="165" x="370" y="30"  as="geometry"/></mxCell>
+<mxCell id="c_steal" parent="cloudWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Harvest / Steal API Token"   vertex="1"><mxGeometry height="42" width="165" x="370" y="85"  as="geometry"/></mxCell>
+<mxCell id="c_oauth" parent="cloudWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] OAuth Token Abuse"           vertex="1"><mxGeometry height="42" width="165" x="370" y="140" as="geometry"/></mxCell>
+<mxCell id="c_bait"  parent="cloudWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#ef6c00;fontSize=12;fontStyle=1;" value="[BAIT] Access Decoy S3 / Fake API Key" vertex="1"><mxGeometry height="42" width="175" x="558" y="85"  as="geometry"/></mxCell>
+<mxCell id="cc1" edge="1" parent="cloudWF" source="c_open"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="c_auth" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="cc2" edge="1" parent="cloudWF" source="c_open"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="c_read" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="cc3" edge="1" parent="cloudWF" source="c_open"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="c_api"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="cc4" edge="1" parent="cloudWF" source="c_api"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="c_exfil"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="cc5" edge="1" parent="cloudWF" source="c_api"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="c_steal"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="cc6" edge="1" parent="cloudWF" source="c_api"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="c_oauth"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="cc7" edge="1" parent="cloudWF" source="c_steal" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;" target="c_bait" ><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- ══════════════════════════════════════
+     5. DAILY WORK / PRODUCTIVITY  y=1378
+     Normal employee activity: dev, meetings,
+     writing docs, project tools etc.
+══════════════════════════════════════ -->
+<mxCell id="dailyWF" parent="1" style="swimlane;html=1;rounded=1;startSize=26;fillColor=#f1f8e9;strokeColor=#558b2f;fontStyle=1;fontSize=13;" value="Daily Work / Productivity Workflow" vertex="1">
+<mxGeometry height="280" width="780" x="790" y="1378" as="geometry"/>
+</mxCell>
+
+<!-- Entry -->
+<mxCell id="dw_start" parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=12;" value="Start Work / Open Desktop" vertex="1"><mxGeometry height="42" width="155" x="15" y="115" as="geometry"/></mxCell>
+
+<!-- General office work -->
+<mxCell id="dw_cal"    parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Open Calendar / Schedule"  vertex="1"><mxGeometry height="42" width="145" x="195" y="15"  as="geometry"/></mxCell>
+<mxCell id="dw_meet"   parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Join Video Meeting"        vertex="1"><mxGeometry height="42" width="145" x="195" y="70"  as="geometry"/></mxCell>
+<mxCell id="dw_doc"    parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Write / Edit Document"     vertex="1"><mxGeometry height="42" width="145" x="195" y="125" as="geometry"/></mxCell>
+<mxCell id="dw_task"   parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Update Task / Ticket (Jira)" vertex="1"><mxGeometry height="42" width="145" x="195" y="180" as="geometry"/></mxCell>
+<mxCell id="dw_chat"   parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Send Slack / Teams Message" vertex="1"><mxGeometry height="42" width="145" x="195" y="235" as="geometry"/></mxCell>
+
+<!-- Developer-specific -->
+<mxCell id="dw_ide"    parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Open IDE (VS Code / IntelliJ)" vertex="1"><mxGeometry height="42" width="150" x="365" y="15"  as="geometry"/></mxCell>
+<mxCell id="dw_code"   parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Write / Edit Code"          vertex="1"><mxGeometry height="42" width="150" x="365" y="70"  as="geometry"/></mxCell>
+<mxCell id="dw_run"    parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Run / Debug / Test"         vertex="1"><mxGeometry height="42" width="150" x="365" y="125" as="geometry"/></mxCell>
+<mxCell id="dw_git"    parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Git Commit / Push / PR"     vertex="1"><mxGeometry height="42" width="150" x="365" y="180" as="geometry"/></mxCell>
+
+<!-- Suspicious branches from daily work -->
+<mxCell id="dw_scrape" parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Scrape / Export Codebase" vertex="1"><mxGeometry height="42" width="155" x="538" y="70"  as="geometry"/></mxCell>
+<mxCell id="dw_push"   parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Push to Personal Repo"    vertex="1"><mxGeometry height="42" width="155" x="538" y="125" as="geometry"/></mxCell>
+<mxCell id="dw_creds"  parent="dailyWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Hardcode Credentials in Code" vertex="1"><mxGeometry height="42" width="155" x="538" y="180" as="geometry"/></mxCell>
+
+<!-- Edges -->
+<mxCell id="dwe1"  edge="1" parent="dailyWF" source="dw_start" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_cal"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe2"  edge="1" parent="dailyWF" source="dw_start" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_meet"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe3"  edge="1" parent="dailyWF" source="dw_start" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_doc"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe4"  edge="1" parent="dailyWF" source="dw_start" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_task"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe5"  edge="1" parent="dailyWF" source="dw_start" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_chat"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe6"  edge="1" parent="dailyWF" source="dw_start" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_ide"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe7"  edge="1" parent="dailyWF" source="dw_ide"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_code"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe8"  edge="1" parent="dailyWF" source="dw_code"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_run"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe9"  edge="1" parent="dailyWF" source="dw_run"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_git"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe10" edge="1" parent="dailyWF" source="dw_code"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="dw_scrape"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe11" edge="1" parent="dailyWF" source="dw_git"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="dw_push"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="dwe12" edge="1" parent="dailyWF" source="dw_code"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="dw_creds" ><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- ══════════════════════════════════════
+     6. ENDPOINT  y=1693
+══════════════════════════════════════ -->
+<mxCell id="endpointWF" parent="1" style="swimlane;html=1;rounded=1;startSize=26;fillColor=#ede7f6;strokeColor=#5e35b1;fontStyle=1;fontSize=13;" value="Endpoint / Command Workflow" vertex="1">
+<mxGeometry height="215" width="780" x="790" y="1693" as="geometry"/>
+</mxCell>
+<mxCell id="ep_term"  parent="endpointWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=12;" value="Open Terminal / PowerShell"     vertex="1"><mxGeometry height="42" width="165" x="15"  y="55"  as="geometry"/></mxCell>
+<mxCell id="ep_run"   parent="endpointWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Run Script / Executable" vertex="1"><mxGeometry height="42" width="155" x="205" y="30"  as="geometry"/></mxCell>
+<mxCell id="ep_query" parent="endpointWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#fb8c00;fontSize=12;" value="Query System / Processes"       vertex="1"><mxGeometry height="42" width="155" x="205" y="85"  as="geometry"/></mxCell>
+<mxCell id="ep_perm"  parent="endpointWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Change Permissions"      vertex="1"><mxGeometry height="42" width="155" x="205" y="140" as="geometry"/></mxCell>
+<mxCell id="ep_logs"  parent="endpointWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Clear Logs / Kill Process" vertex="1"><mxGeometry height="42" width="155" x="385" y="30"  as="geometry"/></mxCell>
+<mxCell id="ep_usb"   parent="endpointWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#fb8c00;fontSize=12;" value="Plug in USB"                    vertex="1"><mxGeometry height="42" width="155" x="385" y="85"  as="geometry"/></mxCell>
+<mxCell id="ep_copy"  parent="endpointWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Copy Files to USB"       vertex="1"><mxGeometry height="42" width="155" x="565" y="85"  as="geometry"/></mxCell>
+<mxCell id="epe1" edge="1" parent="endpointWF" source="ep_term"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="ep_run"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="epe2" edge="1" parent="endpointWF" source="ep_term"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="ep_query"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="epe3" edge="1" parent="endpointWF" source="ep_term"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="ep_perm" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="epe4" edge="1" parent="endpointWF" source="ep_run"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="ep_logs" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="epe5" edge="1" parent="endpointWF" source="ep_term"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="ep_usb"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="epe6" edge="1" parent="endpointWF" source="ep_usb"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="ep_copy" ><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- ══════════════════════════════════════
+     7. PRIVILEGE / ADMIN  y=1943
+══════════════════════════════════════ -->
+<mxCell id="privWF" parent="1" style="swimlane;html=1;rounded=1;startSize=26;fillColor=#fff8e1;strokeColor=#f9a825;fontStyle=1;fontSize=13;" value="Privilege / Admin Workflow" vertex="1">
+<mxGeometry height="230" width="780" x="790" y="1943" as="geometry"/>
+</mxCell>
+<mxCell id="p_admin"  parent="privWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#fbc02d;fontSize=12;" value="Open Admin Console"           vertex="1"><mxGeometry height="42" width="155" x="15"  y="55"  as="geometry"/></mxCell>
+<mxCell id="p_req"    parent="privWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;" value="Request Access"               vertex="1"><mxGeometry height="42" width="140" x="195" y="30"  as="geometry"/></mxCell>
+<mxCell id="p_query"  parent="privWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#fb8c00;fontSize=12;" value="Query Database"               vertex="1"><mxGeometry height="42" width="140" x="195" y="85"  as="geometry"/></mxCell>
+<mxCell id="p_bulk"   parent="privWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Bulk Export Data"         vertex="1"><mxGeometry height="42" width="140" x="195" y="140" as="geometry"/></mxCell>
+<mxCell id="p_acct"   parent="privWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Create New Account"       vertex="1"><mxGeometry height="42" width="150" x="360" y="30"  as="geometry"/></mxCell>
+<mxCell id="p_acl"    parent="privWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Modify ACL / Rights"      vertex="1"><mxGeometry height="42" width="150" x="360" y="85"  as="geometry"/></mxCell>
+<mxCell id="p_export" parent="privWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="[!] Export Sensitive Records"  vertex="1"><mxGeometry height="42" width="150" x="360" y="140" as="geometry"/></mxCell>
+<mxCell id="p_bait"   parent="privWF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#ef6c00;fontSize=12;fontStyle=1;" value="[BAIT] Touch DB Honeytoken"   vertex="1"><mxGeometry height="42" width="155" x="530" y="85"  as="geometry"/></mxCell>
+<mxCell id="pp1" edge="1" parent="privWF" source="p_admin" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="p_req"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="pp2" edge="1" parent="privWF" source="p_admin" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"               target="p_query" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="pp3" edge="1" parent="privWF" source="p_admin" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="p_bulk"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="pp4" edge="1" parent="privWF" source="p_query" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="p_acct"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="pp5" edge="1" parent="privWF" source="p_query" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="p_acl"   ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="pp6" edge="1" parent="privWF" source="p_bulk"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#c62828;" target="p_export"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="pp7" edge="1" parent="privWF" source="p_query" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;" target="p_bait"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- ══════════════════════════════════════
+     COL 4: SENSORS
+══════════════════════════════════════ -->
+<mxCell id="sensorBg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#bdbdbd;dashed=1;" value="" vertex="1">
+<mxGeometry height="2200" width="300" x="1630" y="196" as="geometry"/>
+</mxCell>
+<mxCell id="s_syscall" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede7f6;strokeColor=#673ab7;fontSize=12;fontStyle=1;" value="System Call / Activity Analysis&#xa;- process launch&#xa;- command execution&#xa;- file open / copy / delete&#xa;- session timing&#xa;- sequence patterns" vertex="1">
+<mxGeometry height="125" width="240" x="1660" y="258" as="geometry"/>
+</mxCell>
+<mxCell id="s_email" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontSize=12;fontStyle=1;" value="Email / Collaboration Monitor&#xa;- recipients&#xa;- attachments&#xa;- external forwarding&#xa;- message volume&#xa;- off-hours behavior" vertex="1">
+<mxGeometry height="120" width="240" x="1660" y="428" as="geometry"/>
+</mxCell>
+<mxCell id="s_ids" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#c2185b;fontSize=12;fontStyle=1;" value="IDS / Network Detection&#xa;- unusual connections&#xa;- transfer spikes&#xa;- remote sessions&#xa;- policy violations&#xa;- anomalous destinations" vertex="1">
+<mxGeometry height="120" width="240" x="1660" y="598" as="geometry"/>
+</mxCell>
+<mxCell id="s_cloud" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f7fa;strokeColor=#00838f;fontSize=12;fontStyle=1;" value="Cloud &amp; Online Services Monitor&#xa;- API call volume &amp; rate&#xa;- token usage patterns&#xa;- OAuth grant anomalies&#xa;- unusual service account activity&#xa;- decoy bucket / fake key access" vertex="1">
+<mxGeometry height="125" width="240" x="1660" y="768" as="geometry"/>
+</mxCell>
+<mxCell id="s_dev" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#558b2f;fontSize=12;fontStyle=1;" value="Dev / Productivity Monitor&#xa;- git push destinations&#xa;- repo access patterns&#xa;- credential leaks in code&#xa;- bulk code export&#xa;- off-hours coding activity" vertex="1">
+<mxGeometry height="120" width="240" x="1660" y="943" as="geometry"/>
+</mxCell>
+<mxCell id="s_honey" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ef6c00;fontSize=12;fontStyle=1;" value="Honeytoken / Decoy Trigger&#xa;- opened password.txt&#xa;- touched fake payroll.xlsx&#xa;- attempted decoy login&#xa;- accessed decoy admin share" vertex="1">
+<mxGeometry height="120" width="240" x="1660" y="1113" as="geometry"/>
+</mxCell>
+<mxCell id="s_derived" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#757575;fontSize=12;fontStyle=1;" value="Derived Features&#xa;- behavior deviation&#xa;- capability evidence&#xa;- sophistication estimate&#xa;- opportunity signal&#xa;- suspicious sequence&#xa;- decoy interaction" vertex="1">
+<mxGeometry height="130" width="240" x="1660" y="1283" as="geometry"/>
+</mxCell>
+
+<!-- ══════════════════════════════════════
+     COL 5: DECISION / RESPONSE
+══════════════════════════════════════ -->
+<mxCell id="decisionBg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#bdbdbd;dashed=1;" value="" vertex="1">
+<mxGeometry height="2200" width="300" x="1970" y="196" as="geometry"/>
+</mxCell>
+<mxCell id="d_mgr" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dceeff;strokeColor=#1565c0;fontSize=15;fontStyle=1;" value="Decision Manager" vertex="1">
+<mxGeometry height="50" width="160" x="2045" y="238" as="geometry"/>
+</mxCell>
+<mxCell id="d_motive" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#8e24aa;fontSize=12;fontStyle=1;" value="Motive&#xa;- predisposition&#xa;- stress / grievance&#xa;- behavior change" vertex="1">
+<mxGeometry height="95" width="220" x="2010" y="338" as="geometry"/>
+</mxCell>
+<mxCell id="d_opp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#f9a825;fontSize=12;fontStyle=1;" value="Opportunity&#xa;- access rights / system role&#xa;- timing / decoy interaction&#xa;- restricted access attempts" vertex="1">
+<mxGeometry height="95" width="220" x="2010" y="468" as="geometry"/>
+</mxCell>
+<mxCell id="d_cap" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#d32f2f;fontSize=12;fontStyle=1;" value="Capability&#xa;- sophistication&#xa;- demonstrated skill&#xa;- tool usage&#xa;- log tampering" vertex="1">
+<mxGeometry height="95" width="220" x="2010" y="623" as="geometry"/>
+</mxCell>
+<mxCell id="d_score" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#388e3c;fontSize=13;fontStyle=1;" value="Threat Score&#xa;T = Motive + Opportunity + Capability" vertex="1">
+<mxGeometry height="70" width="220" x="2010" y="773" as="geometry"/>
+</mxCell>
+<mxCell id="d_risk" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#ef6c00;fontSize=12;fontStyle=1;" value="Risk Category&#xa;- Harmless (3–4)&#xa;- Medium Risk (5–6)&#xa;- Dangerous (7–8)&#xa;- Very Dangerous (9)" vertex="1">
+<mxGeometry height="105" width="220" x="2010" y="898" as="geometry"/>
+</mxCell>
+<mxCell id="d_response" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;" value="Response Layer&#xa;- increase monitoring&#xa;- alert analyst&#xa;- restrict access&#xa;- investigate user&#xa;- isolate endpoint" vertex="1">
+<mxGeometry height="110" width="220" x="2010" y="1058" as="geometry"/>
+</mxCell>
+<mxCell id="d_team" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#616161;fontSize=13;fontStyle=1;" value="Security Team / Management" vertex="1">
+<mxGeometry height="50" width="160" x="2040" y="1223" as="geometry"/>
+</mxCell>
+
+<!-- ══════════════════════════════════════
+     CROSS-COLUMN EDGES
+══════════════════════════════════════ -->
+
+<!-- Agent → Session -->
+<mxCell id="x_agentSession" edge="1" parent="1" source="agentNode" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="sessionNode">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="410" y="256"/><mxPoint x="410" y="770"/></Array></mxGeometry>
+</mxCell>
+
+<!-- Policies → Static Attrs -->
+<mxCell id="x_policies" edge="1" parent="1" source="env10" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;dashed=1;strokeColor=#757575;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="staticAttrs" value="role constraints"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- Dynamic State → Session -->
+<mxCell id="x_dynSession" edge="1" parent="1" source="dynState" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;dashed=1;strokeColor=#8e24aa;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="sessionNode" value="behavior changes"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- Session → Workflow entry points -->
+<mxCell id="x_s2email"   edge="1" parent="1" source="sessionNode" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0288d1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="e_open"   value="email"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_s2file"    edge="1" parent="1" source="sessionNode" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#388e3c;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="f_open"   value="files"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_s2browser" edge="1" parent="1" source="sessionNode" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#c2185b;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="b_open"   value="browser"  ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_s2cloud"   edge="1" parent="1" source="sessionNode" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#00838f;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="c_open"   value="cloud"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_s2daily"   edge="1" parent="1" source="sessionNode" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#558b2f;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dw_start" value="daily work"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_s2endpoint" edge="1" parent="1" source="sessionNode" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#5e35b1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="ep_term"  value="endpoint" ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_s2admin"   edge="1" parent="1" source="sessionNode" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#f9a825;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="p_admin"  value="admin"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- Workflows → Sensors -->
+<mxCell id="x_fwd2s"    edge="1" parent="1" source="e_fwd"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0288d1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_email"   value="email logs"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_dl2s"     edge="1" parent="1" source="e_dl"     style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0288d1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_email"              ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_copy2s"   edge="1" parent="1" source="f_copy"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#673ab7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_syscall"           ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_run2s"    edge="1" parent="1" source="ep_run"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#673ab7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_syscall"           ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_logs2s"   edge="1" parent="1" source="ep_logs"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#673ab7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_syscall"           ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_up2s"     edge="1" parent="1" source="b_up"     style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#c2185b;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_ids"              ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_rdp2s"    edge="1" parent="1" source="b_rdp"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#c2185b;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_ids"              ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_cex2s"    edge="1" parent="1" source="c_exfil"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#00838f;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_cloud" value="api alert"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_cst2s"    edge="1" parent="1" source="c_steal"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#00838f;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_cloud"             ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_push2s"   edge="1" parent="1" source="dw_push"  style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#558b2f;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_dev"              ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_scr2s"    edge="1" parent="1" source="dw_scrape" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#558b2f;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_dev"             ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_fbait2s"  edge="1" parent="1" source="f_bait"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#ef6c00;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_honey" value="decoy trigger"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_bbait2s"  edge="1" parent="1" source="b_bait"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#ef6c00;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_honey" value="decoy trigger"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_cbait2s"  edge="1" parent="1" source="c_bait"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#ef6c00;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_honey" value="decoy trigger"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_pbait2s"  edge="1" parent="1" source="p_bait"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#ef6c00;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s_honey" value="decoy trigger"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- Sensors → Derived Features -->
+<mxCell id="x_sys2df"   edge="1" parent="1" source="s_syscall" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#757575;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="s_derived"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_em2df"    edge="1" parent="1" source="s_email"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#757575;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="s_derived"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_ids2df"   edge="1" parent="1" source="s_ids"     style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#757575;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="s_derived"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_cloud2df" edge="1" parent="1" source="s_cloud"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#757575;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="s_derived"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_dev2df"   edge="1" parent="1" source="s_dev"     style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#757575;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="s_derived"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_honey2df" edge="1" parent="1" source="s_honey"   style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#757575;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="s_derived"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- Derived Features → M / O / C -->
+<mxCell id="x_df2m" edge="1" parent="1" source="s_derived" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#8e24aa;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="d_motive" value="motive inputs"     ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_df2o" edge="1" parent="1" source="s_derived" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#f9a825;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="d_opp"    value="opportunity inputs"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_df2c" edge="1" parent="1" source="s_derived" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d32f2f;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="d_cap"    value="capability inputs" ><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- M / O / C → Threat Score -->
+<mxCell id="x_m2score" edge="1" parent="1" source="d_motive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#9673a6;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="d_score">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="2290" y="386"/><mxPoint x="2290" y="808"/></Array></mxGeometry>
+</mxCell>
+<mxCell id="x_o2score" edge="1" parent="1" source="d_opp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d6b656;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="d_score">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="2250" y="516"/><mxPoint x="2250" y="808"/></Array></mxGeometry>
+</mxCell>
+<mxCell id="x_c2score" edge="1" parent="1" source="d_cap" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#388e3c;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="d_score"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- Score → Risk → Response → Team -->
+<mxCell id="x_score2risk" edge="1" parent="1" source="d_score"    style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#ef6c00;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="d_risk"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_risk2resp"  edge="1" parent="1" source="d_risk"     style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#c62828;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="d_response"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="x_resp2team"  edge="1" parent="1" source="d_response" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#616161;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="d_team"    ><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- Feedback: Risk → State Lifecycle -->
+<mxCell id="x_risk2life" edge="1" parent="1" source="d_risk" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;dashed=1;strokeColor=#8e24aa;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="lifecycle" value="state update"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>
