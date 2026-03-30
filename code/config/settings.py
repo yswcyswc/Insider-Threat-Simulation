@@ -2,13 +2,13 @@
 config/settings.py — all simulation parameters in one place.
 """
 
-# ── Schedule ─────────────────────────────────────────────
+# __ Schedule _____________________________________________
 WORK_HOURS_START = 9     # 09:00
 WORK_HOURS_END = 17    # 17:00
 SIMULATION_DAYS = 5
 
-# ── Risk ─────────────────────────────────────────────────
-SUSPICIOUS_THRESHOLD = 100  # normal agents cap at ~60 over 5 days, only stressed/malicious cross this
+# __ Risk _________________________________________________
+SUSPICIOUS_THRESHOLD = 100 
 
 # How much risk each profile adds per tick (1 tick = 1 hour)
 RISK_INCREMENT = {
@@ -17,14 +17,14 @@ RISK_INCREMENT = {
     "malicious": 2.5,
 }
 
-# ── Email sessions per work hour (fixed, not random) ─────
+# __ Email sessions per work hour (fixed, not random) _____
 SESSIONS_PER_HOUR = {
     "normal": 2,
     "stressed": 2,
     "malicious": 3,
 }
 
-# ── Email state transitions ───────────────────────────────
+# __ Email state transitions _______________________________
 # Normal pathway (suspicious states are locked)
 NORMAL_TRANSITIONS = {
     "OPEN_CLIENT": {"VIEW_INBOX": 0.7,  "COMPOSE": 0.2, "SEARCH": 0.1},
@@ -48,6 +48,6 @@ SUSPICIOUS_TRANSITIONS = {
 # Which states count as suspicious in the output
 SUSPICIOUS_STATES = {"CLICK_LINK", "FWD_EXTERNAL", "LEAK_ATTACH", "SEARCH_SENSITIVE"}
 
-# ── Output ────────────────────────────────────────────────
+# __ Output ________________________________________________
 OUTPUT_CSV = "output/simulation_log.csv"
 RANDOM_SEED = 42

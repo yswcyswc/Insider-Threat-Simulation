@@ -8,7 +8,7 @@ from agent import EmployeeAgent
 from simulation import SimulationEngine
 
 
-# ── Population ───────────────────────────────────────────
+# __ Population ___________________________________________
 # (name, profile)
 # profiles: "normal" | "stressed" | "malicious"
 
@@ -52,11 +52,11 @@ def main():
     master_rng = random.Random(settings.RANDOM_SEED)
     agents = build_agents(master_rng)
 
-    # ── Run ──────────────────────────────────────────────
+    # __ Run ______________________________________________
     engine = SimulationEngine(agents)
     logger = engine.run()
 
-    # ── Results ──────────────────────────────────────────
+    # __ Results __________________________________________
     csv_path = logger.to_csv()
     summary = logger.summary()
 

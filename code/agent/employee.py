@@ -17,7 +17,7 @@ class EmployeeAgent:
         self.rng = rng
         self.risk_score = 0.0
 
-    # ── Risk ─────────────────────────────────────────────
+    # __ Risk _____________________________________________
 
     @property
     def is_suspicious(self) -> bool:
@@ -26,7 +26,7 @@ class EmployeeAgent:
     def increment_risk(self):
         self.risk_score += settings.RISK_INCREMENT[self.profile]
 
-    # ── Email chain ─────────────────────────────────────
+    # __ Email chain _____________________________________
 
     def _next_state(self, state: str) -> str:
         """Pick the next email state using the appropriate transition table."""
