@@ -24,7 +24,6 @@ InsiderThreatSim/
 python main.py
 ```
 
-Pure Python 3.10+, no dependencies.
 
 ## Output columns
 
