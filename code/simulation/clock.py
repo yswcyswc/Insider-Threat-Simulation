@@ -1,6 +1,5 @@
 """
-simulation/clock.py
-Discrete-time clock. 1 tick = 1 hour.
+simulation/clock.py — discrete-time clock. 1 tick = 1 hour.
 """
 
 from config import settings
@@ -9,21 +8,16 @@ from config import settings
 class SimulationClock:
 
     def __init__(self):
-        self._tick           = 0
-        self._ticks_per_hour = settings.TICKS_PER_HOUR
-        self._total_ticks    = settings.SIMULATION_DAYS * 24 * self._ticks_per_hour
-
-    @property
-    def tick(self) -> int:
-        return self._tick
+        self.tick  = 0
+        self.total = settings.SIMULATION_DAYS * 24
 
     @property
     def day(self) -> int:
-        return (self._tick // (24 * self._ticks_per_hour)) + 1
+        return self.tick // 24 + 1
 
     @property
     def hour(self) -> int:
-        return (self._tick % (24 * self._ticks_per_hour)) // self._ticks_per_hour
+        return self.tick % 24
 
     @property
     def is_work_hours(self) -> bool:
@@ -31,20 +25,11 @@ class SimulationClock:
 
     @property
     def finished(self) -> bool:
-        return self._tick >= self._total_ticks
+        return self.tick >= self.total
 
     @property
-    def time_label(self) -> str:
+    def label(self) -> str:
         return f"Day {self.day:02d}  {self.hour:02d}:00"
 
-    def advance(self) -> None:
-        self._tick += 1
-
-    def snapshot(self) -> dict:
-        return {
-            "tick":          self._tick,
-            "day":           self.day,
-            "hour":          self.hour,
-            "time_label":    self.time_label,
-            "is_work_hours": self.is_work_hours,
-        }
+    def advance(self):
+        self.tick += 1

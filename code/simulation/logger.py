@@ -1,11 +1,5 @@
 """
-simulation/logger.py
-Collects events and writes CSV.
-
-Columns:
-  tick, day, hour, time_label, period,
-  agent_id, profile, risk_score, threshold_crossed,
-  session_id, chain_step, behavior, suspicious
+simulation/logger.py — collects events and writes a CSV.
 """
 
 import csv
@@ -16,54 +10,38 @@ from config import settings
 class EventLogger:
 
     COLUMNS = [
-        "tick", "day", "hour", "time_label", "period",
-        "agent_id", "profile", "risk_score", "threshold_crossed",
-        "session_id", "chain_step", "behavior", "suspicious",
+        "tick", "day", "hour", "period",
+        "agent_id", "profile", "risk_score", "is_suspicious",
+        "session", "behavior", "flagged",
     ]
 
     def __init__(self):
-        self._rows: list[dict] = []
+        self.rows: list[dict] = []
 
-    def log(self, snap: dict, agent, session_id: int,
-            chain_step: int, behavior: str, suspicious: bool) -> None:
-        self._rows.append({
-            "tick":              snap["tick"],
-            "day":               snap["day"],
-            "hour":              snap["hour"],
-            "time_label":        snap["time_label"],
-            "period":            "work_hours" if snap["is_work_hours"] else "off_hours",
-            "agent_id":          agent.agent_id,
-            "profile":           agent.profile_name,
-            "risk_score":        round(agent.risk_score, 1),
-            "threshold_crossed": agent.threshold_crossed,
-            "session_id":        session_id,
-            "chain_step":        chain_step,
-            "behavior":          behavior,
-            "suspicious":        suspicious,
+    def log(self, clock, agent, session: int, behavior: str):
+        self.rows.append({
+            "tick": clock.tick,
+            "day": clock.day,
+            "hour": clock.hour,
+            "period": "work" if clock.is_work_hours else "off",
+            "agent_id": agent.agent_id,
+            "profile": agent.profile,
+            "risk_score": round(agent.risk_score, 1),
+            "is_suspicious": agent.is_suspicious,
+            "session": session,
+            "behavior": behavior,
+            "flagged": behavior in settings.SUSPICIOUS_STATES,
         })
 
-    def to_csv(self, path: str | None = None) -> str:
-        out = path or settings.OUTPUT_CSV
-        os.makedirs(os.path.dirname(out), exist_ok=True)
-        with open(out, "w", newline="") as f:
+    def to_csv(self) -> str:
+        os.makedirs(os.path.dirname(settings.OUTPUT_CSV), exist_ok=True)
+        with open(settings.OUTPUT_CSV, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=self.COLUMNS)
             writer.writeheader()
-            writer.writerows(self._rows)
-        return os.path.abspath(out)
+            writer.writerows(self.rows)
+        return os.path.abspath(settings.OUTPUT_CSV)
 
     def summary(self) -> dict:
-        total      = len(self._rows)
-        suspicious = sum(1 for r in self._rows if r["suspicious"])
-        by_profile: dict = {}
-        for r in self._rows:
-            p = r["profile"]
-            by_profile.setdefault(p, {"total": 0, "suspicious": 0})
-            by_profile[p]["total"] += 1
-            if r["suspicious"]:
-                by_profile[p]["suspicious"] += 1
-        return {"total_events": total, "suspicious_events": suspicious,
-                "by_profile": by_profile}
-
-    @property
-    def rows(self) -> list[dict]:
-        return list(self._rows)
+        total = len(self.rows)
+        flagged = sum(1 for r in self.rows if r["flagged"])
+        return {"total_events": total, "flagged_events": flagged}
