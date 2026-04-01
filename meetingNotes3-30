@@ -1,0 +1,15 @@
+Email Environment
+- Represents the inbox and communication network
+- Emails act as interaction triggers (read, forward, write)
+
+Implementation
+1. 
+- EmailBox should have its own entity (represented as a stack?), pop from the stack whenever 
+
+- Contains different categories inside the struct: malicious... phishing... normal ones
+- include function read_email(), write_email(), etc_behaviour() for other activities when dealing with emails like restroom...
+
+Model everything in terms of seconds now, read email takes x seconds, write email takes longer y seconds, from read email to write email there is z prob
+
+2. 
+Assume that all data will be read through a csv file (can be json) about employees instead of hardcoded inside the python ones -> more modularized 

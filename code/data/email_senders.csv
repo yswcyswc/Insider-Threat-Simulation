@@ -1,0 +1,14 @@
+category,sender
+normal,hr@company.com
+normal,it@company.com
+normal,manager@company.com
+normal,newsletter@vendor.com
+normal,colleague@company.com
+phishing,support@paypa1.com
+phishing,verify@cmu.edu
+phishing,admin@company-helpdesk.info
+phishing,noreply@docusign-alert.com
+malicious,xfil@darkmail.io
+malicious,drop@c2server.ru
+malicious,invoice@malware-dist.com
+malicious,update@fake-27613721631wyfweadobe.net
