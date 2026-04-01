@@ -20,7 +20,7 @@ class EventLogger:
     def __init__(self):
         self.rows: list[dict] = []
 
-    def log(self, clock, agent, session: int, behavior: str, duration_seconds, email):
+    def log(self, clock, agent, session: int, behavior: str, duration_seconds, email=None):
         self.rows.append({
             "tick": clock.tick,
             "day": clock.day,

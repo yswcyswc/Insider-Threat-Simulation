@@ -25,7 +25,7 @@ class SimulationEngine:
         for _ in range(total_hours):
             is_work = self.clock.is_work_hours
             for agent in self.agents:
-                agent.increment_risk(settings.SECONDS_PER_HOUR)
+                agent.increment_risk()
                 if is_work:
                     self._run_work_hour(agent)
                 else:

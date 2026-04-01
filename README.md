@@ -1,122 +1,150 @@
-# Email ABM — Insider Threat Simulation
+# Email ABM - Insider Threat Simulation
 
-Models employee email behaviour as a **second-based, action-driven agent-based simulation**.
+Models employee email behavior as a second-based, action-driven agent-based simulation.
 Each agent owns an inbox (`EmailBox`), processes emails over time, and accumulates risk.
 Suspicious actions emerge probabilistically once risk crosses a threshold.
 
-
 ## Structure
 
-```
+```text
 InsiderThreatSim/
-├── main.py                      entry point, loads employees from CSV
-├── config/settings.py           all parameters (timing, risk, probabilities)
-├── data/
-│   ├── employees.csv            agent definitions
-│   ├── email_senders.csv        sender pools by category
-│   └── email_subjects.csv       subject pools by category
-├── agent/
-│   └── employee.py              EmployeeAgent — risk + action selection
-├── environment/
-│   ├── email.py                 Email object definition
-│   └── emailbox.py              EmailBox — inbox + email actions
-├── simulation/
-│   ├── clock.py                 second-based clock
-│   ├── engine.py                main loop (duration-driven)
-│   └── logger.py                event collection + CSV writer
-└── output/simulation_log.csv
++-- code/
+|   +-- main.py                      entry point
+|   +-- visualize_log.py             HTML viewer for simulation_log.csv
+|   +-- config/settings.py           loads runtime configuration
+|   +-- data/
+|   |   +-- employees.csv            agent definitions
+|   |   +-- action_definitions.csv   action durations and flags by profile
+|   |   +-- email_senders.csv        sender pools by category
+|   |   +-- email_subjects.csv       subject pools by category
+|   +-- agent/
+|   |   +-- employee.py              EmployeeAgent logic
+|   +-- environment/
+|   |   +-- email.py                 Email object definition
+|   |   +-- emailbox.py              inbox and email actions
+|   +-- simulation/
+|   |   +-- clock.py                 second-based clock
+|   |   +-- engine.py                main loop
+|   |   +-- logger.py                event collection and CSV writer
+|   +-- output/
+|       +-- simulation_log.csv
+|       +-- simulation_timeline.html
++-- README.md
 ```
-
 
 ## Run
 
-```
-python main.py
+```powershell
+python code/main.py
+python code/visualize_log.py
 ```
 
+The first command regenerates `simulation_log.csv`.
+The second command turns that CSV into an easier-to-read HTML timeline.
 
-## Core Model Changes
+## Core Model
 
 - 1 tick = 1 second
 - Simulation advances by action duration
 - Email behavior is action-based, not session-based
-- Inbox is an explicit entity (EmailBox)
-- All data comes from CSV files
+- Inbox is an explicit entity (`EmailBox`)
+- Employee and action settings come from CSV files
 
+## Output Columns
 
-## Output columns
+| Column | Description |
+|---|---|
+| tick | Global time in seconds |
+| day | Simulation day |
+| hour | Hour of day |
+| minute | Minute of hour |
+| second | Second of minute |
+| period | `work` or `off` |
+| agent_id | Agent name |
+| profile | `normal`, `stressed`, or `malicious` |
+| risk_score | Accumulated risk at time of event |
+| is_suspicious | `True` once risk is above the threshold |
+| session | Session number within the current work period |
+| behavior | Action taken |
+| duration_seconds | Time consumed by this action |
+| email_id | Email involved, if the action touched one |
+| email_category | Email type, if the action touched one |
+| flagged | `True` if the action is suspicious |
 
-| Column            | Description                                      |
-|-------------------|--------------------------------------------------|
-| tick              | Global time (seconds)                            |
-| day               | Simulation day                                   |
-| hour              | Hour of day                                      |
-| minute            | Minute of hour                                   |
-| second            | Second of minute                                 |
-| period            | work or off                                      |
-| agent_id          | Agent name                                       |
-| profile           | normal / stressed / malicious                    |
-| risk_score        | Accumulated risk at time of event                |
-| is_suspicious     | True once risk >= SUSPICIOUS_THRESHOLD           |
-| behavior          | Action taken                                     |
-| duration_seconds  | Time consumed by this action                     |
-| email_id          | Email involved                                   |
-| email_category    | normal / phishing / malicious                    |
-| flagged           | True if action is suspicious                     |
-
-
-## How time works
+## How Time Works
 
 - Simulation runs in seconds
-- Each action consumes a fixed duration
-- Clock advances by that duration
-- Work hours are enforced based on time-of-day
+- Each action consumes a random duration sampled from a CSV-defined range
+- The clock advances by that action duration
+- Work hours are enforced based on time of day
 
+## How Email Behavior Works
 
-## How email behavior works
-
-- read_email() pops from inbox
-- write_email(), reply_email(), forward_email() create emails
-- delete_email() removes emails
-- receive_new_emails() injects new emails
+- `read_email()` pops one email from the inbox
+- `write_email()`, `reply_email()`, and `forward_email()` create new outgoing emails
+- `delete_email()` removes one email
+- `receive_new_emails()` injects new emails into the inbox
 
 Email content is generated from CSV pools by category.
 
----
+## Why Some Rows Have `,,,`
 
-## How risk works
+Some actions are not tied to one specific email object.
+
+Examples:
+- `OPEN_CLIENT`
+- `VIEW_INBOX`
+- `SEARCH`
+- `IDLE`
+
+Those actions still get logged, but there is no single email to store in the `email_id` and `email_category` columns.
+That is why rows like these are normal:
+
+```csv
+129284,2,11,54,44,work,Schroeder,normal,5.6,False,2,OPEN_CLIENT,35,,,False
+129319,2,11,55,19,work,Schroeder,normal,5.6,False,2,VIEW_INBOX,96,,,False
+```
+
+By contrast, actions like `READ_EMAIL`, `DELETE`, `REPLY`, and `FORWARD` usually do involve an email, so those rows usually contain values for `email_id` and `email_category`.
+
+## How Risk Works
 
 - Risk increases continuously over time
-- Below threshold → normal behavior
-- Above threshold → higher probability of suspicious actions
+- Below threshold -> normal behavior
+- Above threshold -> higher probability of suspicious actions
 
 Suspicious actions:
-- CLICK_LINK
-- FWD_EXTERNAL
-- LEAK_ATTACH
-- SEARCH_SENSITIVE
-
+- `CLICK_LINK`
+- `FWD_EXTERNAL`
+- `LEAK_ATTACH`
+- `SEARCH_SENSITIVE`
 
 ## Profiles
 
-| Profile   | Risk rate | Behavior tendency            |
-|-----------|----------|------------------------------|
-| normal    | low      | mostly safe actions          |
-| stressed  | medium   | more risky actions           |
-| malicious | high     | frequent attacks             |
-
+| Profile | Risk rate | Behavior tendency |
+|---|---|---|
+| normal | low | mostly safe actions |
+| stressed | medium | more risky actions |
+| malicious | high | frequent attacks |
 
 ## Tuning
 
-All parameters in config/settings.py:
+Code-level settings in `code/config/settings.py` include:
 - simulation duration
 - work hours
 - risk rates
-- action durations
+- session counts per hour
 - email category weights
 - inbox sizes
 
-Data-driven:
-- employees.csv
-- email_senders.csv
-- email_subjects.csv
+Data-driven files in `code/data/` include:
+- `employees.csv`
+- `action_definitions.csv`
+- `email_senders.csv`
+- `email_subjects.csv`
+
+`action_definitions.csv` controls:
+- which actions exist for each profile
+- minimum and maximum duration for each action
+- which actions are suspicious
+- which actions should scale with email category 
