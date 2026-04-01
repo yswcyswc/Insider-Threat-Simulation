@@ -12,7 +12,7 @@ from simulation import SimulationEngine
 # (name, profile)
 # profiles: "normal" | "stressed" | "malicious"
 
-def load_employees(path: str = settings.EMPLOYEE_CSV) -> list[tuple[str, str]]:
+def load_employees(path=settings.EMPLOYEE_CSV) -> list[tuple[str, str]]:
     """
     Read employees.csv → list of (name, profile) tuples.
 

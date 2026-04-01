@@ -7,6 +7,7 @@ Each tick (= 1 hour):
   3. If off hours  → log IDLE.
 """
 
+from config import settings
 from simulation.clock import SimulationClock
 from simulation.logger import EventLogger
 from agent import EmployeeAgent
@@ -20,17 +21,36 @@ class SimulationEngine:
         self.logger = EventLogger()
 
     def run(self) -> EventLogger:
-        while not self.clock.finished:
+        total_hours = settings.SIMULATION_DAYS * 24
+        for _ in range(total_hours):
+            is_work = self.clock.is_work_hours
             for agent in self.agents:
-                agent.increment_risk()
-
-                if self.clock.is_work_hours:
-                    for session_num in range(1, agent.sessions_this_hour() + 1):
-                        for state in agent.run_email_session():
-                            self.logger.log(self.clock, agent, session_num, state)
+                agent.increment_risk(settings.SECONDS_PER_HOUR)
+                if is_work:
+                    self._run_work_hour(agent)
                 else:
-                    self.logger.log(self.clock, agent, 0, "IDLE")
+                    self.logger.log(
+                        self.clock, agent,
+                        session=0,
+                        behavior="IDLE",
+                        duration_seconds=settings.SECONDS_PER_HOUR,
+                    )
 
-            self.clock.advance()
+            self.clock.advance(step=settings.SECONDS_PER_HOUR)
 
         return self.logger
+
+    def _run_work_hour(self, agent: EmployeeAgent):
+        for session_num in range(1, agent.sessions_this_hour() + 1):
+            for behavior, email, duration in agent.run_email_session():
+                self.logger.log(
+                    self.clock, agent,
+                    session=session_num,
+                    behavior=behavior,
+                    duration_seconds=duration,
+                    email=email,
+                )
+                self.clock.advance(step=duration)
+
+            # one new email drips into the inbox between sessions
+            agent.emailbox.receive_new_emails(count=1)

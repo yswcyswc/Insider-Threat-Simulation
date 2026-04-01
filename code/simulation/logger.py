@@ -11,19 +11,22 @@ from environment.email import Email
 class EventLogger:
 
     COLUMNS = [
-        "tick", "day", "hour", "period",
+        "tick", "day", "hour", "minute", "second", "period",
         "agent_id", "profile", "risk_score", "is_suspicious",
-        "session", "behavior", "flagged",
+        "session", "behavior", "duration_seconds",
+        "email_id", "email_category", "flagged", 
     ]
 
     def __init__(self):
         self.rows: list[dict] = []
 
-    def log(self, clock, agent, session: int, behavior: str):
+    def log(self, clock, agent, session: int, behavior: str, duration_seconds, email):
         self.rows.append({
             "tick": clock.tick,
             "day": clock.day,
             "hour": clock.hour,
+            "minute": clock.minute,
+            "second":  clock.second,
             "period": "work" if clock.is_work_hours else "off",
             "agent_id": agent.agent_id,
             "profile": agent.profile,
@@ -31,6 +34,9 @@ class EventLogger:
             "is_suspicious": agent.is_suspicious,
             "session": session,
             "behavior": behavior,
+            "duration_seconds": duration_seconds,
+            "email_id":  email.email_id if email else "",
+            "email_category": email.category  if email else "",
             "flagged": behavior in settings.SUSPICIOUS_STATES,
         })
 
