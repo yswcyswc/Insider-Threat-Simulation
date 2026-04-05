@@ -156,6 +156,31 @@ def build_slot_title(rows: list[dict]) -> str:
     return "&#10;".join(html.escape(line) for line in lines)
 
 
+def build_slot_details(agent_id: str, slot: tuple[int, int], rows: list[dict]) -> str:
+    detail_rows = []
+    for row in sorted(rows, key=lambda item: (item["minute"], item["second"], item["tick"])):
+        detail_rows.append(
+            "<tr>"
+            f"<td>{html.escape(format_time(row))}</td>"
+            f"<td>{html.escape(row['behavior'])}</td>"
+            f"<td>{row['duration_seconds']}</td>"
+            f"<td>{html.escape(row['email_category'] or '-')}</td>"
+            f"<td>{html.escape(row['email_id'] or '-')}</td>"
+            f"<td>{'yes' if row['flagged'] else 'no'}</td>"
+            "</tr>"
+        )
+
+    return (
+        f"<h3>{html.escape(agent_id)} - {html.escape(slot_label(slot))}</h3>"
+        f"<p>{len(rows)} event(s) in this slot.</p>"
+        "<table class='slot-detail-table'>"
+        "<thead><tr><th>Time</th><th>Behavior</th><th>Duration(s)</th>"
+        "<th>Email Type</th><th>Email ID</th><th>Flagged</th></tr></thead>"
+        f"<tbody>{''.join(detail_rows)}</tbody>"
+        "</table>"
+    )
+
+
 def render_html(csv_path: Path, slots: list[tuple[int, int]], agent_cards: list[dict]) -> str:
     total_events = sum(len(agent["rows"]) for agent in agent_cards)
     total_flagged = sum(agent["flagged_count"] for agent in agent_cards)
@@ -175,13 +200,15 @@ def render_html(csv_path: Path, slots: list[tuple[int, int]], agent_cards: list[
 
             css_class, label = dominant_behavior(rows)
             title = build_slot_title(rows)
+            details = html.escape(build_slot_details(agent["agent_id"], slot, rows), quote=True)
             timeline_cells.append(
-                "<td class='slot {css}' title='{title}'>"
+                "<td class='slot {css}' title='{title}' data-slot-details=\"{details}\" tabindex='0'>"
                 "<span>{label}</span>"
                 "<small>{count}</small>"
                 "</td>".format(
                     css=css_class,
                     title=title,
+                    details=details,
                     label=html.escape(label),
                     count=len(rows),
                 )
@@ -356,6 +383,7 @@ def render_html(csv_path: Path, slots: list[tuple[int, int]], agent_cards: list[
     .slot {{
       min-width: 68px;
       font-weight: 700;
+      cursor: pointer;
     }}
     .slot span {{
       display: block;
@@ -403,6 +431,61 @@ def render_html(csv_path: Path, slots: list[tuple[int, int]], agent_cards: list[
     }}
     .detail-table thead th {{
       background: #f8f6ef;
+    }}
+    .slot-detail-table {{
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }}
+    .slot-detail-table th,
+    .slot-detail-table td {{
+      border: 1px solid var(--grid);
+      padding: 8px;
+      text-align: left;
+    }}
+    .slot-detail-table thead th {{
+      background: #f8f6ef;
+    }}
+    .slot:focus {{
+      outline: 3px solid rgba(59, 130, 246, 0.45);
+      outline-offset: -3px;
+    }}
+    .modal {{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(15, 23, 42, 0.45);
+      z-index: 20;
+    }}
+    .modal.open {{
+      display: flex;
+    }}
+    .modal-card {{
+      width: min(960px, 100%);
+      max-height: min(85vh, 900px);
+      overflow: auto;
+      background: var(--panel);
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
+      padding: 18px;
+    }}
+    .modal-head {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }}
+    .modal-close {{
+      border: 1px solid var(--grid);
+      background: white;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
     }}
   </style>
 </head>
@@ -457,10 +540,36 @@ def render_html(csv_path: Path, slots: list[tuple[int, int]], agent_cards: list[
     {''.join(detail_sections)}
   </div>
 
+  <div class="modal" id="slotModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>Hourly Slot Details</h2>
+        <button class="modal-close" id="slotModalClose" type="button">Close</button>
+      </div>
+      <div id="slotModalBody"></div>
+    </div>
+  </div>
+
   <script>
     const filterInput = document.getElementById("agentFilter");
     const timelineRows = Array.from(document.querySelectorAll("#timelineTable tbody tr"));
     const detailBlocks = Array.from(document.querySelectorAll("details"));
+    const slotCells = Array.from(document.querySelectorAll(".slot[data-slot-details]"));
+    const slotModal = document.getElementById("slotModal");
+    const slotModalBody = document.getElementById("slotModalBody");
+    const slotModalClose = document.getElementById("slotModalClose");
+
+    const openSlotModal = (cell) => {{
+      slotModalBody.innerHTML = cell.dataset.slotDetails;
+      slotModal.classList.add("open");
+      slotModal.setAttribute("aria-hidden", "false");
+    }};
+
+    const closeSlotModal = () => {{
+      slotModal.classList.remove("open");
+      slotModal.setAttribute("aria-hidden", "true");
+      slotModalBody.innerHTML = "";
+    }};
 
     filterInput.addEventListener("input", () => {{
       const query = filterInput.value.trim().toLowerCase();
@@ -474,6 +583,28 @@ def render_html(csv_path: Path, slots: list[tuple[int, int]], agent_cards: list[
         const name = block.querySelector("summary").textContent.toLowerCase();
         block.style.display = !query || name.includes(query) ? "" : "none";
       }});
+    }});
+
+    slotCells.forEach((cell) => {{
+      cell.addEventListener("click", () => openSlotModal(cell));
+      cell.addEventListener("keydown", (event) => {{
+        if (event.key === "Enter" || event.key === " ") {{
+          event.preventDefault();
+          openSlotModal(cell);
+        }}
+      }});
+    }});
+
+    slotModalClose.addEventListener("click", closeSlotModal);
+    slotModal.addEventListener("click", (event) => {{
+      if (event.target === slotModal) {{
+        closeSlotModal();
+      }}
+    }});
+    document.addEventListener("keydown", (event) => {{
+      if (event.key === "Escape" && slotModal.classList.contains("open")) {{
+        closeSlotModal();
+      }}
     }});
   </script>
 </body>
