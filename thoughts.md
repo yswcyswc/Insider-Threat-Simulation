@@ -10,7 +10,7 @@ Structure
 - visualize_log.py turns that CSV into simulation_timeline.html  
 
 
-Update 4/9
+Bugs
 
 Original problem
 
@@ -38,12 +38,10 @@ def _run_work_hour(self, agent: EmployeeAgent):
             self.clock.advance(step=duration)
 ```
 
-After this, I added another full hour  
+After this, I added another full hour, time was also being incremented in a fixed chunk after those actions, which made the clock jump abnormally
 
 
-Changes for 4/10 Meeting
-
-- Now the engine is intentionally very small  
+- Now the engine is small  
 - Every loop iteration is one second  
 - Every agent gets a step(...) call  
 - Then the shared clock advances by one second  
@@ -51,26 +49,41 @@ Changes for 4/10 Meeting
 
 Employee agent
 
-- Plan entire hour: only triggered at the start of each hour  
-- Store plan in a queue  
-- Execute it second-by-second  
+- Each employee agent maintains its own local state:
+  - current communication state
+  - current action countdown
+  - active communication object
+  - risk / stress state
+  - formal and informal relationship neighborhoods
+  - email vs messenger preference weights
+- The agent is updated once per simulation tick (1 second).
+- When the countdown for the current action reaches zero, the agent samples its next action based on:
+  - current communication channel context
+  - unread inbox / chat state
+  - stochastic transition rules
+  - profile-dependent action durations
+  - current risk state
 
+Per-tick action logic
 
-Every hour
+- If the agent is currently busy, decrement the action countdown by one second.
+- If the countdown reaches zero:
+  - determine the next communication context (email or messenger)
+  - evaluate the current state transition rule
+  - sample the next action stochastically
+  - sample the action duration
+  - assign the sampled duration as the new countdown
+  - log the action start
 
-- while remaining time in hour:  
-  - generate one email session  
-  - break it into actions  
-  - append to plan  
-  - reduce remaining time  
-  - inject new emails  
+Communication workflow
 
-run_email_session()  # state machine, state transition chain + durations  
-
-- while state != "DONE":  
-  - behavior, email = perform(state)  
-  - duration = sample_duration(...)  
-  - next state = stochastic transition from the table  
+- Communication behavior is modeled as a stochastic state machine.
+- At each decision point, the next state is sampled from a transition table conditioned on:
+  - current state
+  - employee risk condition
+  - communication channel
+- Once an action is selected, its duration is sampled from a profile-specific range.
+- The selected action remains active until its countdown expires.
 
 
 Risks
@@ -81,8 +94,8 @@ Risks
 
 buggy parts: 
 
-- maybe it would be a good idea to remove preplanned hour-long behaviour queues entirely and move everything into per-tick inside `EmployeeAgent.step()`
-- right now agents often follow a sampled plan for a while, which makes them less reactive than they should be
+- DONE: maybe it would be a good idea to remove preplanned hour-long behaviour queues entirely and move everything into per-tick inside `EmployeeAgent.step()`
+- NO LONGER ISSUE: right now agents often follow a sampled plan for a while, which makes them less reactive than they should be
 - a newly received item should be able to change near-future behavior right away:
     - open messenger because a message arrived
     - reply soon after reading
@@ -100,6 +113,5 @@ some ideas:
 - add a small “just received item” bias
     - if an employee just received a message, increase chance of opening messenger soon
     - if they just read a message from a close contact, increase chance of reply
-- reduce planning horizon
-    - instead of planning a whole hour, maybe plan one action at a time or a few actions ahead
-    - this keeps duration-based actions but allows better responsiveness
+- add a urgency / attention model
+    - unread interpersonal communication should temporarily raise the probability of checking that channel
