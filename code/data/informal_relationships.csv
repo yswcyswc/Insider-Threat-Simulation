@@ -1,0 +1,13 @@
+source,target,weight
+Snoopy,Woodstock,2
+Snoopy,Linus,2
+Charlie,Linus,2
+Charlie,Cathy,2
+Lucy,Cathy,2
+Lucy,Freya,2
+Linus,Schroeder,2
+Cathy,Freya,2
+Cathy,PigMarciepen,2
+Jake,Freya,2
+Jake,PigMarciepen,2
+Freya,Schroeder,2

@@ -22,12 +22,19 @@ DEFAULT_OUTPUT = settings.OUTPUT_DIR / "simulation_timeline.html"
 BEHAVIOR_STYLES = {
     "IDLE": ("idle", "IDL"),
     "OPEN_CLIENT": ("open", "OPN"),
+    "OPEN_MESSENGER": ("open", "MSG"),
     "VIEW_INBOX": ("view", "INB"),
+    "VIEW_CHATS": ("view", "CHTS"),
     "READ_EMAIL": ("read", "READ"),
+    "READ_MESSAGE": ("read", "R-MSG"),
     "COMPOSE": ("compose", "CMP"),
+    "SEND_MESSAGE": ("compose", "SEND"),
     "SEARCH": ("search", "SRCH"),
+    "SEARCH_MESSAGES": ("search", "M-SR"),
     "DELETE": ("delete", "DEL"),
+    "DELETE_MESSAGE": ("delete", "M-DEL"),
     "REPLY": ("reply", "RPLY"),
+    "REPLY_MESSAGE": ("reply", "M-RP"),
     "FORWARD": ("forward", "FWD"),
     "CLICK_LINK": ("suspicious", "CLICK"),
     "FWD_EXTERNAL": ("suspicious", "X-FWD"),
@@ -41,13 +48,20 @@ BEHAVIOR_PRIORITY = {
     "LEAK_ATTACH": 100,
     "SEARCH_SENSITIVE": 100,
     "COMPOSE": 60,
+    "SEND_MESSAGE": 60,
     "REPLY": 55,
+    "REPLY_MESSAGE": 55,
     "FORWARD": 50,
     "READ_EMAIL": 45,
+    "READ_MESSAGE": 45,
     "SEARCH": 40,
+    "SEARCH_MESSAGES": 40,
     "DELETE": 35,
+    "DELETE_MESSAGE": 35,
     "VIEW_INBOX": 30,
+    "VIEW_CHATS": 30,
     "OPEN_CLIENT": 20,
+    "OPEN_MESSENGER": 20,
     "IDLE": 0,
 }
 
@@ -74,6 +88,20 @@ def load_rows(csv_path: Path) -> list[dict]:
         rows = list(csv.DictReader(handle))
 
     for row in rows:
+        if "channel" not in row:
+            email_id = row.get("email_id", "")
+            email_category = row.get("email_category", "")
+            row["channel"] = "email" if email_id or email_category else ""
+            row["artifact_kind"] = "email" if email_id or email_category else ""
+            row["artifact_id"] = email_id
+            row["artifact_category"] = email_category
+        else:
+            row.setdefault("artifact_kind", "")
+            row.setdefault("artifact_id", "")
+            row.setdefault("artifact_category", "")
+        row.setdefault("sender", row.get("sender", ""))
+        row.setdefault("recipient", row.get("recipient", ""))
+
         row["tick"] = int(row["tick"])
         row["day"] = int(row["day"])
         row["hour"] = int(row["hour"])
@@ -142,10 +170,15 @@ def build_slot_title(rows: list[dict]) -> str:
     lines = []
     for row in sorted(rows, key=lambda item: (item["minute"], item["second"], item["tick"])):
         extra = []
-        if row["email_category"]:
-            extra.append(row["email_category"])
-        if row["email_id"]:
-            extra.append(f"email {row['email_id']}")
+        if row["channel"]:
+            extra.append(row["channel"])
+        if row["artifact_category"]:
+            extra.append(row["artifact_category"])
+        if row["artifact_id"]:
+            kind = row["artifact_kind"] or "item"
+            extra.append(f"{kind} {row['artifact_id']}")
+        if row["sender"] or row["recipient"]:
+            extra.append(f"{row['sender'] or '?'} -> {row['recipient'] or '?'}")
         if row["flagged"]:
             extra.append("FLAGGED")
         suffix = f" ({', '.join(extra)})" if extra else ""
@@ -164,8 +197,11 @@ def build_slot_details(agent_id: str, slot: tuple[int, int], rows: list[dict]) -
             f"<td>{html.escape(format_time(row))}</td>"
             f"<td>{html.escape(row['behavior'])}</td>"
             f"<td>{row['duration_seconds']}</td>"
-            f"<td>{html.escape(row['email_category'] or '-')}</td>"
-            f"<td>{html.escape(row['email_id'] or '-')}</td>"
+            f"<td>{html.escape(row['channel'] or '-')}</td>"
+            f"<td>{html.escape(row['artifact_category'] or '-')}</td>"
+            f"<td>{html.escape(row['artifact_id'] or '-')}</td>"
+            f"<td>{html.escape(row['sender'] or '-')}</td>"
+            f"<td>{html.escape(row['recipient'] or '-')}</td>"
             f"<td>{'yes' if row['flagged'] else 'no'}</td>"
             "</tr>"
         )
@@ -175,7 +211,7 @@ def build_slot_details(agent_id: str, slot: tuple[int, int], rows: list[dict]) -
         f"<p>{len(rows)} event(s) in this slot.</p>"
         "<table class='slot-detail-table'>"
         "<thead><tr><th>Time</th><th>Behavior</th><th>Duration(s)</th>"
-        "<th>Email Type</th><th>Email ID</th><th>Flagged</th></tr></thead>"
+        "<th>Channel</th><th>Type</th><th>ID</th><th>Sender</th><th>Recipient</th><th>Flagged</th></tr></thead>"
         f"<tbody>{''.join(detail_rows)}</tbody>"
         "</table>"
     )
@@ -242,8 +278,11 @@ def render_html(csv_path: Path, slots: list[tuple[int, int]], agent_cards: list[
                 f"<td>{html.escape(format_time(row))}</td>"
                 f"<td>{html.escape(row['behavior'])}</td>"
                 f"<td>{row['duration_seconds']}</td>"
-                f"<td>{html.escape(row['email_category'] or '-')}</td>"
-                f"<td>{html.escape(row['email_id'] or '-')}</td>"
+                f"<td>{html.escape(row['channel'] or '-')}</td>"
+                f"<td>{html.escape(row['artifact_category'] or '-')}</td>"
+                f"<td>{html.escape(row['artifact_id'] or '-')}</td>"
+                f"<td>{html.escape(row['sender'] or '-')}</td>"
+                f"<td>{html.escape(row['recipient'] or '-')}</td>"
                 f"<td>{row['risk_score']:.1f}</td>"
                 f"<td>{'yes' if row['flagged'] else 'no'}</td>"
                 "</tr>"
@@ -254,7 +293,7 @@ def render_html(csv_path: Path, slots: list[tuple[int, int]], agent_cards: list[
             f"<summary>{html.escape(agent['agent_id'])} ({html.escape(agent['profile'])})</summary>"
             "<table class='detail-table'>"
             "<thead><tr><th>Time</th><th>Behavior</th><th>Duration(s)</th>"
-            "<th>Email Type</th><th>Email ID</th><th>Risk</th><th>Flagged</th></tr></thead>"
+            "<th>Channel</th><th>Type</th><th>ID</th><th>Sender</th><th>Recipient</th><th>Risk</th><th>Flagged</th></tr></thead>"
             f"<tbody>{''.join(event_rows)}</tbody>"
             "</table>"
             "</details>"

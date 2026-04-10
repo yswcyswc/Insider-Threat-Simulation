@@ -1,7 +1,8 @@
-# Email ABM - Insider Threat Simulation
+# Email + Messenger ABM - Insider Threat Simulation
 
-Models employee email behavior as a second-based, action-driven agent-based simulation.
-Each agent owns an inbox (`EmailBox`), processes emails over time, and accumulates risk.
+Models employee communication behavior as a second-based, action-driven agent-based simulation.
+Each agent owns an email inbox (`EmailBox`) and a chat queue (`MessengerBox`), processes communications over time, and accumulates risk.
+Each employee also has a per-person email vs. messenger distribution, and communication is constrained by formal and informal relationship networks.
 Suspicious actions emerge probabilistically once risk crosses a threshold.
 
 ## Structure
@@ -15,13 +16,19 @@ InsiderThreatSim/
 |   +-- data/
 |   |   +-- employees.csv            agent definitions
 |   |   +-- action_definitions.csv   action durations and flags by profile
+|   |   +-- formal_relationships.csv formal email network
+|   |   +-- informal_relationships.csv informal messenger network
 |   |   +-- email_senders.csv        sender pools by category
 |   |   +-- email_subjects.csv       subject pools by category
+|   |   +-- message_senders.csv      messenger sender pools by category
+|   |   +-- message_bodies.csv       messenger body pools by category
 |   +-- agent/
 |   |   +-- employee.py              EmployeeAgent logic
 |   +-- environment/
 |   |   +-- email.py                 Email object definition
 |   |   +-- emailbox.py              inbox and email actions
+|   |   +-- messenger.py             Messenger object definition
+|   |   +-- messengerbox.py          chat queue and messenger actions
 |   +-- simulation/
 |   |   +-- clock.py                 second-based clock
 |   |   +-- engine.py                main loop
@@ -67,8 +74,10 @@ The second command turns that CSV into an easier-to-read HTML timeline.
 | session | Session number within the current work period |
 | behavior | Action taken |
 | duration_seconds | Time consumed by this action |
-| email_id | Email involved, if the action touched one |
-| email_category | Email type, if the action touched one |
+| channel | `email` or `messenger` when an artifact is involved |
+| artifact_kind | `email` or `message` |
+| artifact_id | Communication artifact involved, if any |
+| artifact_category | Artifact type, if the action touched one |
 | flagged | `True` if the action is suspicious |
 
 ## How Time Works
@@ -78,16 +87,20 @@ The second command turns that CSV into an easier-to-read HTML timeline.
 - The clock advances by that action duration
 - Work hours are enforced based on time of day
 
-## How Email Behavior Works
+## How Communication Behavior Works
 
 - `read_email()` pops one email from the inbox
 - `write_email()`, `reply_email()`, and `forward_email()` create new outgoing emails
 - `delete_email()` removes one email
 - `receive_new_emails()` injects new emails into the inbox
+- `read_message()` pops one chat message from the queue
+- `send_message()` and `reply_message()` create outgoing chat messages
+- `delete_message()` removes one chat message
+- `receive_new_messages()` injects new chat messages into the queue
 
-Email content is generated from CSV pools by category.
+Email and messenger content are generated from CSV pools by category.
 
-## Why Some Rows Have `,,,`
+<!-- ## Why Some Rows Have `,,,`
 
 Some actions are not tied to one specific email object.
 
@@ -97,7 +110,7 @@ Examples:
 - `SEARCH`
 - `IDLE`
 
-Those actions still get logged, but there is no single email to store in the `email_id` and `email_category` columns.
+Those actions still get logged, but there is no single communication object to store in the artifact columns.
 That is why rows like these are normal:
 
 ```csv
@@ -105,11 +118,11 @@ That is why rows like these are normal:
 129319,2,11,55,19,work,Schroeder,normal,5.6,False,2,VIEW_INBOX,96,,,False
 ```
 
-By contrast, actions like `READ_EMAIL`, `DELETE`, `REPLY`, and `FORWARD` usually do involve an email, so those rows usually contain values for `email_id` and `email_category`.
+By contrast, actions like `READ_EMAIL`, `DELETE`, `REPLY`, `FORWARD`, `READ_MESSAGE`, and `SEND_MESSAGE` usually do involve a communication object, so those rows usually contain values for the artifact columns. -->
 
 ## How Risk Works
 
-- Risk increases continuously over time
+- Risk increases continuously over time and decreases during off-work hours
 - Below threshold -> normal behavior
 - Above threshold -> higher probability of suspicious actions
 
@@ -140,8 +153,12 @@ Code-level settings in `code/config/settings.py` include:
 Data-driven files in `code/data/` include:
 - `employees.csv`
 - `action_definitions.csv`
+- `formal_relationships.csv`
+- `informal_relationships.csv`
 - `email_senders.csv`
 - `email_subjects.csv`
+- `message_senders.csv`
+- `message_bodies.csv`
 
 `action_definitions.csv` controls:
 - which actions exist for each profile

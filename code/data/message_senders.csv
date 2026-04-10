@@ -1,0 +1,11 @@
+category,sender
+normal,manager-chat
+normal,it-helpdesk
+normal,product-team
+normal,finance-ops
+normal,teammate-1
+phishing,helpdesk-secure
+phishing,password-reset-bot
+phishing,benefits-update
+malicious,file-drop-urgent
+malicious,shadow-sync

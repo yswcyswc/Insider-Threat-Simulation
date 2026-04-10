@@ -5,7 +5,6 @@ simulation/logger.py — collects events and writes a CSV.
 import csv
 import os
 from config import settings
-from environment.email import Email
 
 
 class EventLogger:
@@ -14,7 +13,8 @@ class EventLogger:
         "tick", "day", "hour", "minute", "second", "period",
         "agent_id", "profile", "risk_score", "is_suspicious",
         "session", "behavior", "duration_seconds",
-        "email_id", "email_category", "flagged", 
+        "channel", "artifact_kind", "artifact_id", "artifact_category",
+        "sender", "recipient", "flagged",
     ]
 
     def __init__(self):
@@ -35,8 +35,12 @@ class EventLogger:
             "session": session,
             "behavior": behavior,
             "duration_seconds": duration_seconds,
-            "email_id":  email.email_id if email else "",
-            "email_category": email.category  if email else "",
+            "channel": getattr(email, "channel", "") if email else "",
+            "artifact_kind": getattr(email, "artifact_kind", "") if email else "",
+            "artifact_id": getattr(email, "artifact_id", "") if email else "",
+            "artifact_category": getattr(email, "category", "") if email else "",
+            "sender": getattr(email, "sender", "") if email else "",
+            "recipient": getattr(email, "recipient", "") if email else "",
             "flagged": behavior in settings.SUSPICIOUS_STATES,
         })
 

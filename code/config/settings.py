@@ -23,6 +23,8 @@ SECONDS_PER_DAY = 86400
 # data
 EMPLOYEE_CSV = DATA_DIR / "employees.csv"
 ACTION_DEFINITIONS_CSV = DATA_DIR / "action_definitions.csv"
+FORMAL_RELATIONSHIPS_CSV = DATA_DIR / "formal_relationships.csv"
+INFORMAL_RELATIONSHIPS_CSV = DATA_DIR / "informal_relationships.csv"
 
 
 def _parse_bool(raw: str) -> bool:
@@ -32,7 +34,7 @@ def _parse_bool(raw: str) -> bool:
 def _load_action_definitions(csv_path: Path):
     action_duration_ranges: dict[str, dict[str, tuple[int, int]]] = {}
     suspicious_states: set[str] = set()
-    email_sensitive_actions: set[str] = set()
+    artifact_sensitive_actions: set[str] = set()
 
     with csv_path.open(newline="", encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
@@ -71,12 +73,12 @@ def _load_action_definitions(csv_path: Path):
                 suspicious_states.add(behavior)
 
             if _parse_bool(row["uses_email_multiplier"]):
-                email_sensitive_actions.add(behavior)
+                artifact_sensitive_actions.add(behavior)
 
     if not action_duration_ranges:
         raise ValueError(f"No action definitions loaded from {csv_path}")
 
-    return action_duration_ranges, suspicious_states, email_sensitive_actions
+    return action_duration_ranges, suspicious_states, artifact_sensitive_actions
 
 
 # __ Risk _________________________________________________
@@ -99,7 +101,7 @@ SESSIONS_PER_HOUR = {
     "malicious": 3,
 }
 
-ACTION_DURATION_RANGES, SUSPICIOUS_STATES, EMAIL_SENSITIVE_ACTIONS = _load_action_definitions(
+ACTION_DURATION_RANGES, SUSPICIOUS_STATES, ARTIFACT_SENSITIVE_ACTIONS = _load_action_definitions(
     ACTION_DEFINITIONS_CSV
 )
 
@@ -108,6 +110,12 @@ EMAIL_CATEGORY_DURATION_MULTIPLIER = {
     "normal": 1.0,
     "phishing": 1.15,
     "malicious": 1.3,
+}
+
+MESSAGE_CATEGORY_DURATION_MULTIPLIER = {
+    "normal": 1.0,
+    "phishing": 1.1,
+    "malicious": 1.2,
 }
 
 # __ Email state transitions _______________________________
@@ -129,6 +137,16 @@ SUSPICIOUS_TRANSITIONS = {
     "SEARCH": {"SEARCH_SENSITIVE": 0.7, "DONE": 0.3},
 }
 
+MESSENGER_NORMAL_TRANSITIONS = {
+    "OPEN_MESSENGER": {"VIEW_CHATS": 0.7, "SEND_MESSAGE": 0.2, "SEARCH_MESSAGES": 0.1},
+    "VIEW_CHATS": {"READ_MESSAGE": 0.8, "DELETE_MESSAGE": 0.2},
+    "READ_MESSAGE": {"REPLY_MESSAGE": 0.6, "DONE": 0.4},
+    "SEND_MESSAGE": {"DONE": 1.0},
+    "SEARCH_MESSAGES": {"DONE": 1.0},
+    "DELETE_MESSAGE": {"DONE": 1.0},
+    "REPLY_MESSAGE": {"DONE": 1.0},
+}
+
 
 # __ Inbox generation _____________________________________
 EMAIL_CATEGORY_WEIGHTS = {
@@ -138,6 +156,15 @@ EMAIL_CATEGORY_WEIGHTS = {
 }
 INBOX_INITIAL_SIZE = 20
 INBOX_MAX_SIZE = 50
+
+MESSAGE_CATEGORY_WEIGHTS = {
+    "normal": 0.85,
+    "phishing": 0.10,
+    "malicious": 0.05,
+}
+MESSAGEBOX_INITIAL_SIZE = 12
+MESSAGEBOX_MAX_SIZE = 40
+MESSENGER_SESSION_PROBABILITY = 0.25
 
 # __ Output ________________________________________________
 OUTPUT_CSV = OUTPUT_DIR / "simulation_log.csv"
