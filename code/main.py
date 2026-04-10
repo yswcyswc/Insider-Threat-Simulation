@@ -1,58 +1,15 @@
-"""
-main.py — run with: python main.py
-"""
 import csv
 import random
 from config import settings
 from agent import EmployeeAgent
 from simulation import SimulationEngine
 
-
-# __ Population ___________________________________________
-# (name, profile)
-# profiles: "normal" | "stressed" | "malicious"
-
 def load_employees(path=settings.EMPLOYEE_CSV) -> list[tuple[str, str]]:
-    """
-    Read employees.csv → list of (name, profile) tuples.
-
-    CSV format (header required):
-        name,profile
-        Snoopy,normal
-        Jake,malicious
-    """
     rows = []
     with open(path, newline="") as f:
         for row in csv.DictReader(f):
             rows.append((row["name"].strip(), row["profile"].strip()))
     return rows
-
-# POPULATION = [
-#     ("Snoopy", "normal"),
-#     ("Woodstock", "normal"),
-#     ("Charlie", "normal"),
-#     ("Lucy", "normal"),
-#     ("Linus", "stressed"),
-#     ("Cathy", "stressed"),
-#     ("Jake", "malicious"),
-#     ("Freya", "malicious"),
-#     ("Schroeder", "normal"),
-#     ("PigMarciepen", "normal"),
-# ]
-
-
-# POPULATION = [
-#         ("Snoopy", "low", "low", "novice", "low", 2),
-#         ("Woodstock", "low", "low", "novice", "low", 2),
-#         ("Charlie",  "low", "low", "advanced", "medium", 2),
-#         ("Lucy", "low", "low", "advanced", "medium", 2),
-#         ("Linus", "medium", "high", "advanced", "medium", 2),
-#         ("Cathy", "medium", "high", "novice", "low", 2),
-#         ("Jake", "high", "high", "advanced", "high", 3),
-#         ("Freya", "high", "high", "administrator", "high", 3),
-#         ("Schroeder", "high", "medium", "advanced", "high", 3),
-#         ("Pigpen", "low", "low", "novice", "low", 2),
-#     ]
 
 def build_agents(master_rng: random.Random) -> list[EmployeeAgent]:
     agents = []
@@ -65,12 +22,8 @@ def build_agents(master_rng: random.Random) -> list[EmployeeAgent]:
 def main():
     master_rng = random.Random(settings.RANDOM_SEED)
     agents = build_agents(master_rng)
-
-    # __ Run ______________________________________________
     engine = SimulationEngine(agents)
     logger = engine.run()
-
-    # __ Results __________________________________________
     csv_path = logger.to_csv()
     summary = logger.summary()
 

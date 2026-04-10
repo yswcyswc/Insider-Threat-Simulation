@@ -80,7 +80,7 @@ def _load_action_definitions(csv_path: Path):
 
 
 # __ Risk _________________________________________________
-SUSPICIOUS_THRESHOLD = 50
+SUSPICIOUS_THRESHOLD = 20
 
 # How much risk each profile adds per tick
 RISK_INCREMENT = {
@@ -88,6 +88,9 @@ RISK_INCREMENT = {
     "stressed": 0.5,
     "malicious": 0.8,
 }
+
+# Very gradual recovery while an agent is idle/off-hours.
+IDLE_RISK_RECOVERY_PER_SECOND = 0.000002
 
 # __ Email sessions per work hour __________________________
 SESSIONS_PER_HOUR = {

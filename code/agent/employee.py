@@ -1,11 +1,5 @@
-"""
-agent/employee.py — one employee agent.
-
-Each tick the agent gains risk. Once risk >= SUSPICIOUS_THRESHOLD,
-the email chain can include suspicious states (leaking, clicking bad links, etc.)
-"""
-
 import random
+from collections import deque
 from config import settings
 from environment.emailbox import EmailBox
 
@@ -14,12 +8,14 @@ class EmployeeAgent:
 
     def __init__(self, agent_id: str, profile: str, rng: random.Random):
         self.agent_id = agent_id
-        self.profile = profile          # "normal" | "stressed" | "malicious"
+        self.profile = profile  
         self.rng = rng
         self.risk_score = 0.0
         self.emailbox = EmailBox(agent_id, rng)
+        self._queue = deque()
+        self._remaining = 0
 
-    # __ Risk _____________________________________________
+    # Risk
 
     @property
     def is_suspicious(self) -> bool:
@@ -28,7 +24,13 @@ class EmployeeAgent:
     def increment_risk(self):
         self.risk_score += settings.RISK_INCREMENT[self.profile]
 
-    # __ Email chain _____________________________________
+    def recover_risk(self):
+        self.risk_score = max(
+            0.0,
+            self.risk_score - settings.IDLE_RISK_RECOVERY_PER_SECOND,
+        )
+
+    # Email chains
 
     def _next_state(self, state: str) -> str:
         """Pick the next email state using the appropriate transition table."""
@@ -107,6 +109,53 @@ class EmployeeAgent:
 
     def sessions_this_hour(self) -> int:
         return settings.SESSIONS_PER_HOUR[self.profile]
+
+    def _build_work_hour_plan(self) -> list[tuple[int, str, int, object]]:
+        hour_plan = []
+        remaining = settings.SECONDS_PER_HOUR
+        session_num = 1
+
+        while remaining > 0:
+            session_events = self.run_email_session()
+            for behavior, email, duration in session_events:
+                if remaining <= 0:
+                    break
+
+                actual_duration = min(duration, remaining)
+                hour_plan.append((session_num, behavior, actual_duration, email))
+                remaining -= actual_duration
+
+            self.emailbox.receive_new_emails(count=1)
+            session_num += 1
+
+        return hour_plan
+
+    def _plan_current_hour(self, is_work_hours: bool):
+        if is_work_hours:
+            self.increment_risk()
+            hour_plan = self._build_work_hour_plan()
+        else:
+            hour_plan = [(0, "IDLE", settings.SECONDS_PER_HOUR, None)]
+
+        self._queue = deque(hour_plan)
+        self._remaining = 0
+
+    def step(self, clock, logger):
+        if clock.minute == 0 and clock.second == 0:
+            self._plan_current_hour(clock.is_work_hours)
+
+        while self._remaining == 0 and self._queue:
+            session_num, behavior, duration, email = self._queue.popleft()
+            if duration <= 0:
+                continue
+
+            logger.log(clock, self, session=session_num, behavior=behavior, duration_seconds=duration, email=email, )
+            self._remaining = duration
+
+        if self._remaining > 0:
+            if not clock.is_work_hours:
+                self.recover_risk()
+            self._remaining -= 1
 
     def __repr__(self):
         return f"EmployeeAgent({self.agent_id!r}, {self.profile!r}, risk={self.risk_score:.1f})"
