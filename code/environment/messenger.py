@@ -1,9 +1,3 @@
-"""
-environment/messenger.py
-
-A single chat message sitting in an agent's MessengerBox queue.
-"""
-
 from dataclasses import dataclass, field
 from typing import Literal
 

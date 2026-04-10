@@ -1,7 +1,3 @@
-"""
-simulation/logger.py — collects events and writes a CSV.
-"""
-
 import csv
 import os
 from config import settings

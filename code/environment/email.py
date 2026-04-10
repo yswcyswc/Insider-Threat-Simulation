@@ -1,15 +1,3 @@
-"""
-environment/email.py 
-
-A single email sitting in an agent's EmailBox stack.
-
-Categories
-----------
-"normal"    — routine workplace email, safe
-"phishing"  — crafted to trick the user (fake login, link click)
-"malicious" — carries a malicious attachment or C2 callback link
-"""
-
 from dataclasses import dataclass, field
 from typing import Literal
 
